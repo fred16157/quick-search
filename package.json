@@ -1,0 +1,93 @@
+{
+	"name": "quick-search",
+	"publisher": "fred16157",
+	"displayName": "Quick Search",
+	"description": "Adds quick search functionality to vscode using web search engines",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.35.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:quick-search.search",
+		"onCommand:quick-search.searchByGoogle",
+		"onCommand:quick-search.searchByStackOverflow"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "quick-search.search",
+				"title": "Search",
+				"category": "Quick Search"
+			},
+			{
+				"command": "quick-search.searchByGoogle",
+				"title": "Search By Google",
+				"category": "Quick Search"
+			},
+			{
+				"command": "quick-search.searchByStackOverflow",
+				"title": "Search By Stack Overflow",
+				"category": "Quick Search"
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"command": "quick-search.search"
+				},
+				{
+					"command": "quick-search.searchByGoogle"
+				},
+				{
+					"command": "quick-search.searchByStackOverflow"
+				}
+			],
+			"comments/commentThread/context": [
+				{
+					"command": "quick-search.search"
+				},
+				{
+					"command": "quick-search.searchByGoogle"
+				},
+				{
+					"command": "quick-search.searchByStackOverflow"
+				}
+			]
+		},
+		"configuration": {
+			"type": "object",
+			"title": "Quick Search",
+			"properties": {
+				"quick-search.default": {
+					"type": "string",
+					"default": "google",
+					"enum": ["google", "stackoverflow"],
+					"description": "Default search engine to be used"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^5.2.7",
+		"@types/node": "^12.11.7",
+		"@types/vscode": "^1.35.0",
+		"glob": "^7.1.5",
+		"mocha": "^6.2.2",
+		"typescript": "^3.6.4",
+		"tslint": "^5.20.0",
+		"vscode-test": "^1.2.2"
+	},
+	"dependencies": {}
+}
